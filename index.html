@@ -7,7 +7,7 @@
   <meta name="author" content="Christopher David Alberto Roque - White Assassins">
   <meta
     name="description"
-    content="Web de prueba para mandos de PS5 y Xbox: drift de sticks, botones, gatillos, polling y estimacion de latencia del navegador."
+    content="Web de prueba para mandos PS5, Xbox y gamepads genericos con drift, respuesta, polling y diagnostico de sticks."
   >
   <meta name="theme-color" content="#07111f">
   <meta name="color-scheme" content="dark">
@@ -50,7 +50,7 @@
 
         <h1 data-i18n="heroTitle">Live PS5 and Xbox controller tester</h1>
         <p class="hero-text" data-i18n="heroText">
-          Plug in a controller through USB or Bluetooth and inspect sticks, buttons, triggers,
+          Connect a controller over USB or Bluetooth and inspect sticks, buttons, triggers,
           drift, browser polling and a latency estimate built from the Gamepad API.
         </p>
 
@@ -127,7 +127,7 @@
             <span class="label" data-i18n="noteLabel">Note</span>
             <p id="latencyNote" data-i18n="latencyNote">
               Real hardware latency is not exposed to the browser. This demo shows an estimate based on
-              `timestamp`, `requestAnimationFrame` cadence and visible input changes.
+              timestamp, requestAnimationFrame cadence and visible input changes.
             </p>
           </div>
         </div>
@@ -146,90 +146,243 @@
         </div>
       </section>
 
-      <section class="workspace workspace-grid">
-        <div class="panel">
-          <div class="section-heading">
-            <p class="section-kicker" data-i18n="sticksKicker">Sticks</p>
-            <h2 data-i18n="sticksTitle">Drift and precision</h2>
-          </div>
+      <section class="workspace workspace-tabs">
+        <div class="tabs-shell" role="tablist" aria-label="PadPulse navigation">
+          <button id="tabTesterBtn" class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tabTester" data-tab="tester" data-i18n="tabTester">Tester</button>
+          <button id="tabGuidedBtn" class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tabGuided" data-tab="guided" data-i18n="tabGuided">Guided</button>
+          <button id="tabTriggersBtn" class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tabTriggers" data-tab="triggers" data-i18n="tabTriggers">Triggers</button>
+          <button id="tabToolsBtn" class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tabTools" data-tab="tools" data-i18n="tabTools">Tools</button>
+          <button id="tabHistoryBtn" class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tabHistory" data-tab="history" data-i18n="tabHistory">History</button>
+        </div>
 
-          <div class="sticks-layout">
-            <article class="stick-module">
-              <div class="stick-header">
-                <h3 data-i18n="leftStickTitle">Left stick</h3>
-                <p id="leftStickStatus">Waiting for signal</p>
+        <div id="tabTester" class="tab-panel active" role="tabpanel" aria-labelledby="tabTesterBtn">
+          <div class="workspace-grid">
+            <div class="panel">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="sticksKicker">Sticks</p>
+                <h2 data-i18n="sticksTitle">Drift and precision</h2>
               </div>
-              <div class="stick-stage">
-                <div id="leftStickArena" class="stick-arena">
-                  <div class="arena-cross"></div>
-                  <div class="deadzone-ring"></div>
-                  <div class="stick-point stick-point-raw"></div>
-                  <div class="stick-point stick-point-filtered"></div>
+
+              <div class="sticks-layout">
+                <article class="stick-module">
+                  <div class="stick-header">
+                    <h3 data-i18n="leftStickTitle">Left stick</h3>
+                    <p id="leftStickStatus">Waiting for signal</p>
+                  </div>
+                  <div class="stick-stage">
+                    <div id="leftStickArena" class="stick-arena">
+                      <div class="arena-cross"></div>
+                      <div class="deadzone-ring"></div>
+                      <div class="stick-point stick-point-raw"></div>
+                      <div class="stick-point stick-point-filtered"></div>
+                    </div>
+                  </div>
+                  <div class="metric-grid" id="leftStickMetrics"></div>
+                </article>
+
+                <article class="stick-module">
+                  <div class="stick-header">
+                    <h3 data-i18n="rightStickTitle">Right stick</h3>
+                    <p id="rightStickStatus">Waiting for signal</p>
+                  </div>
+                  <div class="stick-stage">
+                    <div id="rightStickArena" class="stick-arena">
+                      <div class="arena-cross"></div>
+                      <div class="deadzone-ring"></div>
+                      <div class="stick-point stick-point-raw"></div>
+                      <div class="stick-point stick-point-filtered"></div>
+                    </div>
+                  </div>
+                  <div class="metric-grid" id="rightStickMetrics"></div>
+                </article>
+              </div>
+            </div>
+
+            <div class="panel panel-trace">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="traceKicker">Trace</p>
+                <h2 data-i18n="traceTitle">Realtime history</h2>
+              </div>
+
+              <div class="trace-legend">
+                <span><i class="legend-swatch left-x"></i> LX</span>
+                <span><i class="legend-swatch left-y"></i> LY</span>
+                <span><i class="legend-swatch right-x"></i> RX</span>
+                <span><i class="legend-swatch right-y"></i> RY</span>
+              </div>
+
+              <canvas id="historyCanvas" width="900" height="320"></canvas>
+
+              <div class="metric-grid metric-grid-wide" id="timingMetrics"></div>
+            </div>
+
+            <div class="panel">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="inputsKicker">Inputs</p>
+                <h2 data-i18n="inputsTitle">Buttons and triggers</h2>
+              </div>
+
+              <div class="trigger-stack">
+                <div class="trigger-item">
+                  <div class="trigger-header">
+                    <h3 id="leftTriggerLabel">L2 / LT</h3>
+                    <strong id="leftTriggerValue">0%</strong>
+                  </div>
+                  <div class="trigger-bar"><span id="leftTriggerFill"></span></div>
+                </div>
+                <div class="trigger-item">
+                  <div class="trigger-header">
+                    <h3 id="rightTriggerLabel">R2 / RT</h3>
+                    <strong id="rightTriggerValue">0%</strong>
+                  </div>
+                  <div class="trigger-bar"><span id="rightTriggerFill"></span></div>
                 </div>
               </div>
-              <div class="metric-grid" id="leftStickMetrics"></div>
-            </article>
 
-            <article class="stick-module">
-              <div class="stick-header">
-                <h3 data-i18n="rightStickTitle">Right stick</h3>
-                <p id="rightStickStatus">Waiting for signal</p>
-              </div>
-              <div class="stick-stage">
-                <div id="rightStickArena" class="stick-arena">
-                  <div class="arena-cross"></div>
-                  <div class="deadzone-ring"></div>
-                  <div class="stick-point stick-point-raw"></div>
-                  <div class="stick-point stick-point-filtered"></div>
-                </div>
-              </div>
-              <div class="metric-grid" id="rightStickMetrics"></div>
-            </article>
+              <div id="buttonsGrid" class="buttons-grid"></div>
+            </div>
           </div>
         </div>
 
-        <div class="panel panel-trace">
-          <div class="section-heading">
-            <p class="section-kicker" data-i18n="traceKicker">Trace</p>
-            <h2 data-i18n="traceTitle">Realtime history</h2>
+        <div id="tabGuided" class="tab-panel" role="tabpanel" aria-labelledby="tabGuidedBtn" hidden>
+          <div class="workspace-one">
+            <div class="panel panel-surface">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="guidedKicker">Guided</p>
+                <h2 data-i18n="guidedTitle">Step by step controller test</h2>
+              </div>
+              <p class="panel-text" data-i18n="guidedText">
+                Follow the sequence to validate center position, stick travel, triggers, face buttons, D-pad and rumble.
+              </p>
+              <div class="guide-progress-shell">
+                <div id="guidedProgressFill" class="guide-progress-fill"></div>
+              </div>
+              <div class="guide-summary">
+                <div class="guide-current">
+                  <span class="label" data-i18n="currentStepLabel">Current step</span>
+                  <strong id="guidedCurrentStep">-</strong>
+                </div>
+                <div class="guide-current">
+                  <span class="label" data-i18n="progressLabel">Progress</span>
+                  <strong id="guidedProgressText">0%</strong>
+                </div>
+              </div>
+              <div class="hero-actions hero-actions-compact">
+                <button id="guidedStartBtn" class="primary-btn" type="button" data-i18n="guidedStartBtn">Start guided test</button>
+                <button id="guidedResetBtn" class="ghost-btn" type="button" data-i18n="guidedResetBtn">Reset guided test</button>
+              </div>
+              <div id="guidedSteps" class="guide-steps"></div>
+            </div>
           </div>
-
-          <div class="trace-legend">
-            <span><i class="legend-swatch left-x"></i> LX</span>
-            <span><i class="legend-swatch left-y"></i> LY</span>
-            <span><i class="legend-swatch right-x"></i> RX</span>
-            <span><i class="legend-swatch right-y"></i> RY</span>
-          </div>
-
-          <canvas id="historyCanvas" width="900" height="320"></canvas>
-
-          <div class="metric-grid metric-grid-wide" id="timingMetrics"></div>
         </div>
 
-        <div class="panel">
-          <div class="section-heading">
-            <p class="section-kicker" data-i18n="inputsKicker">Inputs</p>
-            <h2 data-i18n="inputsTitle">Buttons and triggers</h2>
-          </div>
-
-          <div class="trigger-stack">
-            <div class="trigger-item">
-              <div class="trigger-header">
-                <h3 id="leftTriggerLabel">L2 / LT</h3>
-                <strong id="leftTriggerValue">0%</strong>
+        <div id="tabTriggers" class="tab-panel" role="tabpanel" aria-labelledby="tabTriggersBtn" hidden>
+          <div class="workspace-one">
+            <div class="panel panel-surface">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="triggerLabKicker">Trigger lab</p>
+                <h2 data-i18n="triggerLabTitle">Advanced trigger analysis</h2>
               </div>
-              <div class="trigger-bar"><span id="leftTriggerFill"></span></div>
-            </div>
-            <div class="trigger-item">
-              <div class="trigger-header">
-                <h3 id="rightTriggerLabel">R2 / RT</h3>
-                <strong id="rightTriggerValue">0%</strong>
+              <p class="panel-text" data-i18n="triggerLabText">
+                Inspect trigger curve, activation threshold, effective resolution and a smoothness estimate.
+              </p>
+              <div class="trigger-analysis-grid">
+                <article class="trigger-analysis">
+                  <div class="trigger-analysis-head">
+                    <h3 id="leftTriggerAnalysisLabel">L2 / LT</h3>
+                    <strong id="leftTriggerAnalysisValue">0%</strong>
+                  </div>
+                  <canvas id="leftTriggerCanvas" width="600" height="140"></canvas>
+                  <div id="leftTriggerMetrics" class="metric-grid"></div>
+                </article>
+                <article class="trigger-analysis">
+                  <div class="trigger-analysis-head">
+                    <h3 id="rightTriggerAnalysisLabel">R2 / RT</h3>
+                    <strong id="rightTriggerAnalysisValue">0%</strong>
+                  </div>
+                  <canvas id="rightTriggerCanvas" width="600" height="140"></canvas>
+                  <div id="rightTriggerMetrics" class="metric-grid"></div>
+                </article>
               </div>
-              <div class="trigger-bar"><span id="rightTriggerFill"></span></div>
             </div>
           </div>
+        </div>
 
-          <div id="buttonsGrid" class="buttons-grid"></div>
+        <div id="tabTools" class="tab-panel" role="tabpanel" aria-labelledby="tabToolsBtn" hidden>
+          <div class="workspace-one">
+            <div class="panel panel-surface">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="toolsKicker">Tools</p>
+                <h2 data-i18n="toolsTitle">Install, save and share</h2>
+              </div>
+              <p class="panel-text" data-i18n="toolsText">
+                Save a local snapshot, share a summary, install PadPulse as an app or run a rumble check if supported.
+              </p>
+              <div class="tool-actions">
+                <button id="installBtn" class="ghost-btn" type="button" data-i18n="installBtnText">Install app</button>
+                <button id="saveSessionBtn" class="ghost-btn" type="button" data-i18n="saveSessionBtnText">Save session</button>
+                <button id="shareBtn" class="ghost-btn" type="button" data-i18n="shareBtnText">Share result</button>
+                <button id="rumbleBtn" class="primary-btn" type="button" data-i18n="rumbleBtnText">Run rumble test</button>
+              </div>
+              <div class="tool-status">
+                <span class="label" data-i18n="utilityStatusLabel">Status</span>
+                <p id="utilityStatus">Idle</p>
+              </div>
+              <div id="supportMetrics" class="metric-grid"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tabHistory" class="tab-panel" role="tabpanel" aria-labelledby="tabHistoryBtn" hidden>
+          <div class="workspace-two">
+            <div class="panel panel-surface">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="compatKicker">Compatibility</p>
+                <h2 data-i18n="compatTitle">Local compatibility base</h2>
+              </div>
+              <p class="panel-text" data-i18n="compatText">
+                PadPulse stores how each controller is reported by your browser and operating system on this device.
+              </p>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th data-i18n="tableModel">Model</th>
+                      <th data-i18n="tableBrowser">Browser</th>
+                      <th data-i18n="tablePlatform">Platform</th>
+                      <th data-i18n="tableMapping">Mapping</th>
+                      <th data-i18n="tableLastSeen">Last seen</th>
+                    </tr>
+                  </thead>
+                  <tbody id="compatTableBody"></tbody>
+                </table>
+              </div>
+              <div class="panel-actions">
+                <button id="clearCompatBtn" class="ghost-btn" type="button" data-i18n="clearCompatBtn">Clear compatibility base</button>
+              </div>
+            </div>
+
+            <div class="panel panel-surface">
+              <div class="section-heading">
+                <p class="section-kicker" data-i18n="historyKicker">History</p>
+                <h2 data-i18n="historyTitle">Local saved sessions</h2>
+              </div>
+              <p class="panel-text" data-i18n="historyText">
+                Saved snapshots stay in your browser so you can compare the same controller over time.
+              </p>
+              <div id="savedSessionsList" class="session-list"></div>
+              <div class="panel-actions">
+                <button id="clearSessionsBtn" class="ghost-btn" type="button" data-i18n="clearSessionsBtn">Clear saved sessions</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace workspace-console-note">
+        <div class="console-note">
+          <span class="label" data-i18n="consoleNoteLabel">Console friendly</span>
+          <p data-i18n="consoleNoteText">This layout is optimized for keyboards, gamepads and TV-like browsers with large focus targets and no hover-only actions.</p>
         </div>
       </section>
     </main>
@@ -237,7 +390,7 @@
     <footer class="project-footer">
       <p data-i18n="footerLineOne">PadPulse is a static browser project built to test controller input without installing native software.</p>
       <p data-i18n="footerLineTwo">It works best on localhost and modern Chromium based browsers with Gamepad API support.</p>
-      <p class="footer-meta">Christopher David Alberto Roque - WhiteAssassins | AEWhiteDevs</p>
+      <p class="footer-meta">Christopher David Alberto Roque - White Assassins | AEWhiteDevs</p>
     </footer>
   </div>
 

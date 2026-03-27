@@ -32,6 +32,7 @@ jobs:
           cp index.html dist/
           cp styles.css dist/
           cp script.js dist/
+          cp sw.js dist/
           cp favicon.svg dist/
           cp social-card.svg dist/
           cp site.webmanifest dist/

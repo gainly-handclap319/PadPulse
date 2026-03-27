@@ -25,9 +25,17 @@ PadPulse es una web estatica para probar mandos desde el navegador. Esta pensada
 - Deteccion de familia y modelo aproximado del mando.
 - Extraccion de `vendorId` y `productId` cuando el navegador los expone en `gamepad.id`.
 - Interfaz bilingue en espanol e ingles.
+- Navegacion por pestañas para evitar una pagina excesivamente larga.
 - Visualizacion en vivo de drift y zona muerta en ambos sticks.
 - Historial de ejes en tiempo real.
 - Vista de botones y gatillos.
+- Test guiado paso a paso para validar un mando completo.
+- Analisis avanzado de gatillos con curva, umbral, resolucion y suavidad.
+- Base local de compatibilidad por navegador y sistema.
+- Historial persistente de sesiones en `localStorage`.
+- Instalacion como PWA y soporte offline basico.
+- Compartir resultados mediante Web Share API o portapapeles.
+- Prueba de vibracion cuando la Gamepad API lo permite.
 - Calibracion del centro y reinicio rapido de metricas.
 - Branding, favicon, manifest y metadata social listos para despliegue.
 - Workflow de despliegue automatico a GitHub Pages.
@@ -81,6 +89,14 @@ PadPulse is a static browser app for testing controllers directly from the web. 
 - Live stick drift and deadzone visualization.
 - Realtime axis history.
 - Buttons and triggers monitoring.
+- Guided end to end controller test flow.
+- Advanced trigger analysis with curve, threshold, resolution and smoothness.
+- Local compatibility database per browser and platform.
+- Persistent local session history via `localStorage`.
+- PWA install support with basic offline caching.
+- Tabbed navigation to avoid an overly long single-page layout.
+- Result sharing through Web Share API or clipboard.
+- Rumble test when the Gamepad API exposes vibration support.
 - Center calibration and fast metric reset.
 - Branding, favicon, manifest and social metadata ready for publishing.
 - Automatic GitHub Pages deployment workflow.

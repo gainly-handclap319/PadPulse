@@ -436,6 +436,60 @@ input[type="range"] {
   gap: 22px;
 }
 
+.panel-surface {
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-text {
+  margin: -6px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.workspace-tabs,
+.workspace-console-note {
+  display: grid;
+  gap: 18px;
+}
+
+.tabs-shell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tab-btn {
+  min-height: 50px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.tab-btn:hover,
+.tab-btn:focus-visible,
+.tab-btn.active {
+  outline: none;
+  color: var(--text);
+  transform: translateY(-1px);
+  border-color: rgba(69, 240, 209, 0.35);
+  background: rgba(69, 240, 209, 0.14);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
 .sticks-layout {
   display: grid;
   gap: 18px;
@@ -641,6 +695,260 @@ canvas {
   background: rgba(69, 240, 209, 0.14);
 }
 
+.hero-actions-compact {
+  margin-top: 12px;
+}
+
+.workspace-three,
+.workspace-two,
+.workspace-one {
+  display: grid;
+  gap: 18px;
+}
+
+.workspace-three {
+  grid-template-columns: 1.05fr 1fr 0.9fr;
+}
+
+.workspace-two {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+.workspace-one {
+  grid-template-columns: 1fr;
+}
+
+.guide-progress-shell {
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.guide-progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal), #93ffe9);
+  transition: width 180ms ease;
+}
+
+.guide-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.guide-current,
+.tool-status,
+.session-card,
+.guide-step {
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.guide-steps {
+  display: grid;
+  gap: 10px;
+}
+
+.guide-step {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.guide-step strong,
+.guide-step span {
+  display: block;
+}
+
+.guide-step span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.guide-step strong {
+  font-size: 0.98rem;
+}
+
+.guide-step-badge {
+  min-width: 112px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+}
+
+.guide-step.is-active .guide-step-badge {
+  color: var(--text);
+  border-color: rgba(108, 200, 255, 0.35);
+  background: rgba(108, 200, 255, 0.12);
+}
+
+.guide-step.is-done .guide-step-badge {
+  color: #08111f;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--teal), #93ffe9);
+}
+
+.guide-step.is-skipped .guide-step-badge {
+  color: var(--amber);
+  border-color: rgba(255, 184, 77, 0.28);
+  background: rgba(255, 184, 77, 0.1);
+}
+
+.trigger-analysis-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.trigger-analysis {
+  border-radius: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.trigger-analysis-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.trigger-analysis-head h3,
+.trigger-analysis-head strong {
+  margin: 0;
+}
+
+.tool-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.tool-actions button:disabled,
+.ghost-btn:disabled,
+.primary-btn:disabled,
+.lang-btn:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.tool-status p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 660px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.data-table th,
+.data-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: top;
+}
+
+.data-table th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.data-table td {
+  font-size: 0.96rem;
+}
+
+.table-subtitle {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.session-list {
+  display: grid;
+  gap: 12px;
+}
+
+.session-card h3,
+.session-card p,
+.session-card pre {
+  margin: 0;
+}
+
+.session-card h3 {
+  font-size: 1rem;
+}
+
+.session-card .session-meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.session-card .session-summary {
+  margin-top: 12px;
+  color: var(--text);
+  white-space: pre-wrap;
+  line-height: 1.55;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.empty-state {
+  border-radius: 18px;
+  padding: 18px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.console-note {
+  border-radius: 20px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.console-note p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .project-footer {
   display: grid;
   gap: 8px;
@@ -675,7 +983,9 @@ canvas {
 
 @media (max-width: 1180px) {
   .hero,
-  .workspace-grid {
+  .workspace-grid,
+  .workspace-three,
+  .workspace-two {
     grid-template-columns: 1fr;
   }
 
@@ -703,6 +1013,7 @@ canvas {
   .status-strip,
   .control-row,
   .meta-strip,
+  .guide-summary,
   .metric-grid-wide,
   .buttons-grid {
     grid-template-columns: 1fr;
