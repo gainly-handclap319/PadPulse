@@ -1,23 +1,36 @@
 # PadPulse
 
-PadPulse is a browser based controller tester for PS5, Xbox and generic gamepads. It focuses on stick drift checks, trigger response, button state inspection, browser polling estimates and quick model identification when the Gamepad API exposes enough hardware data.
+PadPulse is a browser based controller tester for PS5, Xbox and generic gamepads. It helps you inspect drift, deadzone behavior, triggers, buttons, axis history, browser polling and approximate controller model detection from the Gamepad API.
+
+Created by **Christopher David Alberto Roque - White Assassins** with **AEWhiteDevs**.
+
+## GitHub metadata
+
+### Suggested description
+
+Browser based controller tester for PS5, Xbox and generic gamepads with drift, deadzone, polling and model detection.
+
+### Suggested topics
+
+`gamepad`, `controller`, `ps5`, `xbox`, `dualsense`, `drift-test`, `gamepad-api`, `latency`, `diagnostics`, `javascript`, `html`, `css`, `github-pages`
 
 ## Espanol
 
 ### Que es
 
-PadPulse es una web estatica para probar mandos desde el navegador. Sirve para revisar drift, zona muerta, botones, gatillos, traza de ejes y una estimacion de respuesta basada en la Gamepad API.
+PadPulse es una web estatica para probar mandos desde el navegador. Esta pensada para revisar drift, zona muerta, sticks, botones, gatillos, historial de ejes y una estimacion de respuesta basada en la Gamepad API.
 
-### Funciones
+### Funciones principales
 
 - Deteccion de familia y modelo aproximado del mando.
-- Lectura de `vendorId` y `productId` cuando el navegador los expone en `gamepad.id`.
+- Extraccion de `vendorId` y `productId` cuando el navegador los expone en `gamepad.id`.
 - Interfaz bilingue en espanol e ingles.
-- Visualizacion en vivo de sticks, zona muerta y drift.
-- Historial de ejes en canvas.
+- Visualizacion en vivo de drift y zona muerta en ambos sticks.
+- Historial de ejes en tiempo real.
 - Vista de botones y gatillos.
 - Calibracion del centro y reinicio rapido de metricas.
-- Servidor local minimo incluido para abrir la app en `localhost`.
+- Branding, favicon, manifest y metadata social listos para despliegue.
+- Workflow de despliegue automatico a GitHub Pages.
 
 ### Inicio rapido
 
@@ -39,28 +52,38 @@ npm start
 
 Si PowerShell bloquea `npm.ps1`, usa `node server.js` directamente.
 
-### Notas
+### Despliegue en GitHub Pages
+
+1. Sube el repositorio a GitHub.
+2. Ve a `Settings > Pages`.
+3. En `Source`, selecciona `GitHub Actions`.
+4. Haz push a `main` o `master`.
+5. El workflow `.github/workflows/deploy-pages.yml` publicara la web automaticamente.
+
+### Notas importantes
 
 - La latencia real del hardware no se puede medir con precision desde una web. PadPulse muestra una estimacion basada en `timestamp`, `requestAnimationFrame` y cambios visibles en la entrada.
 - La deteccion exacta del modelo depende de lo que exponga cada navegador y cada sistema operativo.
-- La app funciona mejor en navegadores Chromium modernos.
+- La aplicacion funciona mejor en navegadores Chromium modernos.
+- No se suben datos del mando a ningun servidor desde la propia web.
 
 ## English
 
 ### What it is
 
-PadPulse is a static browser app for testing controllers directly from the web. It helps you inspect drift, deadzone behavior, buttons, triggers, axis history and an estimated response signal built on top of the Gamepad API.
+PadPulse is a static browser app for testing controllers directly from the web. It lets you inspect drift, deadzone behavior, buttons, triggers, axis history and an estimated response signal built on top of the Gamepad API.
 
-### Features
+### Main features
 
 - Approximate controller family and model detection.
 - `vendorId` and `productId` extraction when the browser exposes them through `gamepad.id`.
 - Spanish and English interface.
-- Live stick, deadzone and drift visualization.
-- Axis history canvas.
+- Live stick drift and deadzone visualization.
+- Realtime axis history.
 - Buttons and triggers monitoring.
 - Center calibration and fast metric reset.
-- Tiny local server included for `localhost` usage.
+- Branding, favicon, manifest and social metadata ready for publishing.
+- Automatic GitHub Pages deployment workflow.
 
 ### Quick start
 
@@ -82,32 +105,58 @@ npm start
 
 If PowerShell blocks `npm.ps1`, run `node server.js` directly.
 
-### Notes
+### GitHub Pages deployment
+
+1. Push the repository to GitHub.
+2. Go to `Settings > Pages`.
+3. Choose `GitHub Actions` as the source.
+4. Push to `main` or `master`.
+5. The `.github/workflows/deploy-pages.yml` workflow will publish the site automatically.
+
+### Important notes
 
 - True hardware latency cannot be measured accurately from the browser. PadPulse shows an estimate based on `timestamp`, `requestAnimationFrame` and visible input changes.
 - Exact model detection depends on what each browser and operating system expose.
 - The app works best on modern Chromium based browsers.
+- The site itself does not upload controller data anywhere.
 
 ## Project structure
 
 ```text
 .
+|-- .github/
+|-- favicon.svg
 |-- index.html
-|-- styles.css
 |-- script.js
+|-- site.webmanifest
+|-- social-card.svg
+|-- styles.css
 |-- server.js
 |-- package.json
-|-- README.md
-`-- LICENSE
+|-- CONTRIBUTING.md
+|-- CODE_OF_CONDUCT.md
+|-- SECURITY.md
+|-- LICENSE
+`-- README.md
 ```
 
-## Publish on GitHub
+## Contributing
 
-- Push the repository as a public GitHub project.
-- Enable GitHub Pages if you want a hosted version.
-- Keep `LICENSE` and `README.md` in the root so GitHub renders them automatically.
-- If you deploy to Pages, use a static host or the provided files directly.
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening major pull requests.
+
+## Code of Conduct
+
+This project follows the rules described in [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
+
+## Security
+
+Please read [SECURITY.md](./SECURITY.md) before reporting vulnerabilities.
 
 ## License
 
-MIT
+This project is released under the **MIT License**. See [LICENSE](./LICENSE).
+
+## Credits
+
+- Creator: **Christopher David Alberto Roque - White Assassins**
+- Development group: **AEWhiteDevs**

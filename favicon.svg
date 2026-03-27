@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">PadPulse favicon</title>
+  <desc id="desc">Neon controller pulse icon for the PadPulse project.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07111f" />
+      <stop offset="100%" stop-color="#0d1a2f" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#45f0d1" />
+      <stop offset="100%" stop-color="#6cc8ff" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="url(#bg)" />
+  <path
+    d="M34 46c6-8 17-12 30-12s24 4 30 12c5 6 8 16 5 24l-4 11c-1 4-5 7-10 7-4 0-8-2-10-6l-4-8H57l-4 8c-2 4-6 6-10 6-5 0-9-3-10-7l-4-11c-3-8 0-18 5-24Z"
+    fill="none"
+    stroke="url(#glow)"
+    stroke-width="7"
+    stroke-linejoin="round"
+  />
+  <circle cx="48" cy="63" r="7" fill="#45f0d1" />
+  <circle cx="80" cy="63" r="7" fill="#6cc8ff" />
+  <path
+    d="M64 22v14M64 92v14M22 64h14M92 64h14"
+    stroke="#ffb84d"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+</svg>

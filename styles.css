@@ -653,6 +653,11 @@ canvas {
   line-height: 1.6;
 }
 
+.footer-meta {
+  color: var(--text);
+  opacity: 0.82;
+}
+
 @keyframes spin {
   from { transform: rotate(-16deg); }
   to { transform: rotate(344deg); }

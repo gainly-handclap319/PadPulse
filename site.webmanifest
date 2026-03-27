@@ -1,0 +1,17 @@
+{
+  "name": "PadPulse",
+  "short_name": "PadPulse",
+  "description": "Browser based controller tester for PS5, Xbox and generic gamepads.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
